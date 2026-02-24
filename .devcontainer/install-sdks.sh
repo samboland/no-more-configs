@@ -36,8 +36,8 @@ if [ "$DOTNET_ENABLED" = "true" ]; then
         done
         curl -fsSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh
         chmod +x /tmp/dotnet-install.sh
-        /tmp/dotnet-install.sh --channel 9.0 --install-dir /usr/share/dotnet
-        /tmp/dotnet-install.sh --channel 10.0 --quality preview --install-dir /usr/share/dotnet
+        sudo /tmp/dotnet-install.sh --channel 9.0 --install-dir /usr/share/dotnet
+        sudo /tmp/dotnet-install.sh --channel 10.0 --quality preview --install-dir /usr/share/dotnet
         rm /tmp/dotnet-install.sh
         sudo ln -sf /usr/share/dotnet/dotnet /usr/local/bin/dotnet
         echo "✓ .NET $(dotnet --version) installed"
