@@ -62,7 +62,7 @@
   "workspaceFolder": "/workspace",
   "postStartCommand": "bash .devcontainer/lifecycle-wrapper.sh postStart 'sudo /usr/local/bin/init-firewall.sh && git config --global --add safe.directory /workspace && git config --global --add safe.directory \"*\" && git config --global core.autocrlf input && bash .devcontainer/setup-network-checks.sh && bash .devcontainer/init-gsd.sh && mcp-setup'",
   "initializeCommand": "node -e \"const fs=require('fs'); if(!fs.existsSync('config.json'))fs.copyFileSync('.devcontainer/config.default.json','config.json')\"",
-  "postCreateCommand": "bash .devcontainer/lifecycle-wrapper.sh postCreate 'bash .devcontainer/setup-container.sh && bash .devcontainer/install-agent-config.sh'",
+  "postCreateCommand": "bash .devcontainer/lifecycle-wrapper.sh postCreate 'bash .devcontainer/setup-container.sh && bash .devcontainer/install-sdks.sh && bash .devcontainer/install-agent-config.sh'",
   "waitFor": "postStartCommand",
   "forwardPorts": [3000, 8787],
   "portsAttributes": {

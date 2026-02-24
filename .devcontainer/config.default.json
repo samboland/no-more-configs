@@ -31,6 +31,9 @@
       "enabled": false
     }
   },
+  "sdks": {
+    "dotnet": false
+  },
   "plugins": {
     "nmc-langfuse-tracing": {
       "enabled": false
