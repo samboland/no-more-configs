@@ -8,6 +8,25 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
+## [1.2.3] - 2026-02-24
+
+### Added
+
+- **Opt-in .NET SDK** — install .NET 9.0 + 10.0 at container start by setting `sdks.dotnet: true` in `config.json`. Disabled by default to keep build times fast
+- `install-sdks.sh` — new postCreate script handles SDK installation with automatic firewall domain allowlisting
+- `save-config` now persists the `sdks` section
+
+### Fixed
+
+- `dotnet-install.sh` now runs with `sudo` to write to `/usr/share/dotnet`
+
+### Changed
+
+- .NET SDK removed from devcontainer `features` — no longer installed at build time. This fixes slow builds and build failures for users who don't need .NET
+- Unused `NPM_TOKEN` secret removed from publish workflow
+
+---
+
 ## [1.2.2] - 2026-02-23
 
 ### Added
@@ -213,7 +232,8 @@ First public release. Everything below is what ships out of the box.
 - `secrets.example.json` — secret schema reference
 - `LICENSE` — MIT
 
-[1.2.2]: https://github.com/agomusio/no-more-configs/compare/v1.2.1...HEAD
+[1.2.3]: https://github.com/agomusio/no-more-configs/compare/v1.2.2...HEAD
+[1.2.2]: https://github.com/agomusio/no-more-configs/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/agomusio/no-more-configs/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/agomusio/no-more-configs/compare/v1.1.2...v1.2.0
 [1.1.2]: https://github.com/agomusio/no-more-configs/compare/v1.1.1...v1.1.2
