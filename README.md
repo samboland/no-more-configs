@@ -79,7 +79,7 @@ _"I spent weekends configuring Claude, Docker, and everything else — now you d
 - [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) running (WSL2 backend)
 
 **Linux:**
-- [Docker Engine](https://docs.docker.com/engine/install/)
+- [Docker Engine](https://docs.docker.com/engine/install/) with [buildx plugin](https://docs.docker.com/build/install-buildx/)
 
 ### 1. Install and Open
 

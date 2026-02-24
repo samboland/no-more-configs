@@ -136,17 +136,23 @@ fi
 # HEALTH CHECK
 # ============================================================================
 
-# Poll gateway health endpoint with retry logic
-echo "Checking gateway health at ${gateway_url}/health..."
-http_code=$(curl -s -o /dev/null -w "%{http_code}" \
-  --retry 15 --retry-delay 2 --retry-max-time 30 --retry-connrefused \
-  "${gateway_url}/health" 2>&1 || echo "000")
+# Only check gateway health if mcp-gateway is enabled in config
+gateway_enabled=$(jq -r '.mcp_servers["mcp-gateway"].enabled // false' "$config_file" 2>/dev/null || echo "false")
 
-if [ "$http_code" = "200" ]; then
-  echo "✓ Gateway is healthy"
+if [ "$gateway_enabled" = "true" ]; then
+  echo "Checking gateway health at ${gateway_url}/health..."
+  http_code=$(curl -s -o /dev/null -w "%{http_code}" \
+    --retry 15 --retry-delay 2 --retry-max-time 30 --retry-connrefused \
+    "${gateway_url}/health" 2>&1 || echo "000")
+
+  if [ "$http_code" = "200" ]; then
+    echo "✓ Gateway is healthy"
+  else
+    echo "⚠ Warning: Gateway not ready (HTTP ${http_code})"
+    echo "  Start: cd ${LANGFUSE_STACK_DIR:-/workspace/infra} && docker compose up -d docker-mcp-gateway"
+  fi
 else
-  echo "⚠ Warning: Gateway not ready (HTTP ${http_code})"
-  echo "  Start: cd ${LANGFUSE_STACK_DIR:-/workspace/infra} && docker compose up -d docker-mcp-gateway"
+  echo "⚠ MCP gateway disabled — skipping health check"
 fi
 
 echo ""
