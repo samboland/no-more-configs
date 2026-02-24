@@ -48,7 +48,7 @@ Read `/workspace/CHANGELOG.md`. Insert a new section after the `---` that follow
 
 ## Step 5: Update cli/README.md (if needed)
 
-Check if any changes affect the CLI's README (e.g. new prerequisites, usage changes). If so, update `/workspace/cli/README.md`.
+Check if any changes affect the CLI installer's README (e.g. new prerequisites, usage changes). If so, update `/workspace/cli/README.md`. This file is published to npm as the package README.
 
 ## Step 6: Commit, tag, and push
 
@@ -59,7 +59,7 @@ chore: bump version to vX.Y.Z
 ```
 
 Then:
-1. Create an annotated tag: `git tag vX.Y.Z`
+1. Create a tag: `git tag vX.Y.Z`
 2. Push commit and tag: `git push origin main --tags`
 
 ## Step 7: Confirm release
@@ -71,15 +71,33 @@ After pushing, inform the user:
 
 - Commit: <short-hash>
 - Tag: vX.Y.Z pushed to origin
-- GitHub release: will be auto-created by `.github/workflows/release.yml` (extracts notes from CHANGELOG.md)
-- npm publish: will be triggered by `.github/workflows/publish-npm.yml` (publishes `cli/` with provenance)
+- GitHub release: auto-created by `.github/workflows/release.yml`
+- npm publish: auto-published by `.github/workflows/publish-npm.yml`
 
 Track workflows: https://github.com/agomusio/no-more-configs/actions
 ```
 
+---
+
+## Files that change during a release
+
+| File | What changes |
+|------|-------------|
+| `cli/package.json` | `"version"` field bumped — single source of truth for the version |
+| `CHANGELOG.md` | New version section added, comparison links updated |
+| `cli/README.md` | Only if release includes changes relevant to the npm installer (prerequisites, usage, etc.) |
+
 ## Release pipeline reference
 
-The push triggers two chained GitHub Actions workflows:
+A `v*` tag push triggers two independent GitHub Actions workflows in parallel:
 
-1. **`release.yml`** — triggered by `v*` tag push. Extracts the matching version section from `CHANGELOG.md` and creates a GitHub release with those notes.
-2. **`publish-npm.yml`** — triggered by the `release: published` event. Runs `npm publish --provenance --access public` from the `cli/` directory.
+1. **`release.yml`** (Create Release) — extracts the matching version section from `CHANGELOG.md` (using awk), writes it to a temp file, and creates a GitHub release via `gh release create --notes-file`. Uses `GITHUB_TOKEN` for auth.
+
+2. **`publish-npm.yml`** (Publish to npm) — runs `npm publish --provenance --access public` from the `cli/` directory. Auth is handled by **OIDC trusted publishing** (GitHub Actions proves identity directly to npm via `id-token: write` permission). No `NPM_TOKEN` secret is needed. The npm package `no-more-configs` is configured on npmjs.com to trust this specific workflow file.
+
+### Key details
+
+- **Both workflows trigger on tag push** — they do NOT chain (`release.yml` does not trigger `publish-npm.yml`). This is because `GITHUB_TOKEN`-created events don't trigger downstream workflows.
+- **OIDC trust is file-specific** — npm is configured to trust `publish-npm.yml` by name. Do not rename this file or move the publish step to another workflow without updating the trusted publishing config on npmjs.com.
+- **Changelog formatting matters** — `release.yml` extracts notes using awk between `## [version]` headings. Avoid backtick-heavy content in the first line after the heading (it gets passed through bash). The `--notes-file` approach prevents shell interpretation issues.
+- **`cli/` is the npm package root** — only `cli/package.json`, `cli/index.js`, and `cli/README.md` are published (per the `"files"` field in package.json).
