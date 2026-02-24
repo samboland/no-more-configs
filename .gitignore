@@ -47,4 +47,4 @@ CHANGELOG.md
 .claude/
 
 # pnpm
-./pnpm-store/
+.pnpm-store/
