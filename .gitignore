@@ -45,3 +45,6 @@ CHANGELOG.md
 
 # Host-side Claude Code artifacts (not part of container config)
 .claude/
+
+# pnpm
+./pnpm-store/
