@@ -105,7 +105,11 @@ CONFIG=$(echo "$CONFIG" | jq '
     .mcp_servers["mcp-gateway"] //= {"enabled": false}
 ')
 
-# ─── Section 8: plugins ──────────────────────────────────────────────────────
+# ─── Section 8: sdks ─────────────────────────────────────────────────────────
+
+CONFIG=$(echo "$CONFIG" | jq '.sdks //= {} | .sdks.dotnet //= false')
+
+# ─── Section 9: plugins ──────────────────────────────────────────────────────
 
 # Discover installed plugins and ensure each has an entry.
 # Opt-in plugins (langfuse tracing) default to disabled; others default to enabled.
@@ -123,7 +127,7 @@ for plugin_dir in /workspace/agent-config/plugins/*/; do
     CONFIG=$(echo "$CONFIG" | jq --arg p "$plugin_name" --argjson d "$default_enabled" '.plugins[$p] //= {"enabled": $d}')
 done
 
-# ─── Section 9: Claude memory ────────────────────────────────────────────────
+# ─── Section 10: Claude memory ───────────────────────────────────────────────
 
 # Save Claude's per-project memory files so they survive container rebuilds.
 # Memory dirs live at ~/.claude/projects/<project-dir>/memory/
@@ -172,7 +176,7 @@ if [ ${#CC_DEFAULTED[@]} -gt 0 ]; then
 fi
 
 # Other sections — show what's set
-for section in firewall codex infra langfuse vscode mcp_servers plugins; do
+for section in firewall codex infra langfuse vscode mcp_servers sdks plugins; do
     value=$(jq -c ".$section" "$CONFIG_FILE")
     echo "[save-config] $section: $value"
 done
