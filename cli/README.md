@@ -33,7 +33,7 @@ npx no-more-configs --version     # Show version
 - [Node.js](https://nodejs.org/) >= 18 (for npx)
 - [Git](https://git-scm.com/)
 - [VS Code](https://code.visualstudio.com/) with the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) running
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (Windows) or [Docker Engine](https://docs.docker.com/engine/install/) (Linux)
 
 ## What You Get
 

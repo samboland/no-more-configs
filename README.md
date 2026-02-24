@@ -17,7 +17,7 @@
 
 <pre>npx no-more-configs@latest</pre>
 
-**Windows only (WSL2 + Docker Desktop required).**
+**Works on Windows (WSL2 + Docker Desktop) and Linux (Docker Engine).**
 
 <br>
 
@@ -71,10 +71,15 @@ _"I spent weekends configuring Claude, Docker, and everything else — now you d
 
 ### Prerequisites
 
-- Windows with [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) enabled
 - [Node.js](https://nodejs.org/) >= 18 (for npx)
 - [VS Code](https://code.visualstudio.com/) with the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
+
+**Windows:**
+- [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) enabled
 - [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) running (WSL2 backend)
+
+**Linux:**
+- [Docker Engine](https://docs.docker.com/engine/install/)
 
 ### 1. Install and Open
 
@@ -636,7 +641,7 @@ Handled automatically. If it recurs: `git config --global --add safe.directory '
 
 | Issue                                                                                | Cause                                                                                                                                            | Status                                                                                                 |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| Claude Code Edit tool throws `ENOENT: no such file or directory` on files that exist | WSL2 bind mount (C:\ → 9P → container) causes stale file metadata; the Edit tool's freshness check sees a mismatched mtime and rejects the write | Intermittent, self-healing (re-read + retry succeeds). Likely resolved in a future Claude Code update. |
+| Claude Code Edit tool throws `ENOENT: no such file or directory` on files that exist (Windows only) | WSL2 bind mount (C:\ → 9P → container) causes stale file metadata; the Edit tool's freshness check sees a mismatched mtime and rejects the write | Intermittent, self-healing (re-read + retry succeeds). Likely resolved in a future Claude Code update. |
 | Lifecycle terminal closes before you can read output                                 | VS Code dismisses the postCreate/postStart terminal on completion                                                                                | Use `slc` / `sls` aliases to view saved logs from `/tmp/devcontainer-logs/`                            |
 
 ---

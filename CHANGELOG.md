@@ -8,6 +8,20 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
+## [1.2.2] - 2026-02-23
+
+### Added
+
+- **Linux support** — NMC now runs on Linux (tested on Ubuntu 24) with just VS Code and Docker Engine. No WSL2 or Docker Desktop required.
+
+### Changed
+
+- `initializeCommand` switched from PowerShell to Node.js for cross-platform compatibility (Windows + Linux)
+- README updated with platform-specific prerequisites (Windows and Linux sections)
+- ENOENT known issue marked as Windows-only
+
+---
+
 ## [1.2.1] - 2026-02-21
 
 ### Added
@@ -199,7 +213,8 @@ First public release. Everything below is what ships out of the box.
 - `secrets.example.json` — secret schema reference
 - `LICENSE` — MIT
 
-[1.2.1]: https://github.com/agomusio/no-more-configs/compare/v1.2.0...HEAD
+[1.2.2]: https://github.com/agomusio/no-more-configs/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/agomusio/no-more-configs/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/agomusio/no-more-configs/compare/v1.1.2...v1.2.0
 [1.1.2]: https://github.com/agomusio/no-more-configs/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/agomusio/no-more-configs/compare/v1.1.0...v1.1.1
