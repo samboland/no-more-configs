@@ -8,6 +8,14 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
+## [1.2.4] - 2026-02-24
+
+### Fixed
+
+- **`initializeCommand` failing on some platforms** — switched from string form to exec-form array in `devcontainer.json`, avoiding shell parsing issues that prevented container creation
+
+---
+
 ## [1.2.3] - 2026-02-24
 
 ### Added
@@ -232,7 +240,8 @@ First public release. Everything below is what ships out of the box.
 - `secrets.example.json` — secret schema reference
 - `LICENSE` — MIT
 
-[1.2.3]: https://github.com/agomusio/no-more-configs/compare/v1.2.2...HEAD
+[1.2.4]: https://github.com/agomusio/no-more-configs/compare/v1.2.3...HEAD
+[1.2.3]: https://github.com/agomusio/no-more-configs/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/agomusio/no-more-configs/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/agomusio/no-more-configs/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/agomusio/no-more-configs/compare/v1.1.2...v1.2.0
