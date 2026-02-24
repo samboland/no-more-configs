@@ -52,6 +52,14 @@ RUN install -m 0755 -d /etc/apt/keyrings && \
     apt-get install -y docker-ce-cli docker-compose-plugin && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Install .NET SDKs (9.0 + 10.0)
+RUN curl -fsSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh && \
+    chmod +x /tmp/dotnet-install.sh && \
+    /tmp/dotnet-install.sh --channel 9.0 --install-dir /usr/share/dotnet && \
+    /tmp/dotnet-install.sh --channel 10.0 --quality preview --install-dir /usr/share/dotnet && \
+    rm /tmp/dotnet-install.sh && \
+    ln -s /usr/share/dotnet/dotnet /usr/local/bin/dotnet
+
 # Ensure default node user has access to /usr/local/share
 RUN mkdir -p /usr/local/share/npm-global && \
   chown -R node:node /usr/local/share
