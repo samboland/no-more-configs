@@ -259,6 +259,25 @@ CORE_DOMAINS=(
     "chatgpt.com"
     # Google AI
     "generativelanguage.googleapis.com"
+    # Amazon (Product Advertising API + product data)
+    "api.amazon.com"
+    "www.amazon.com"
+    # Google Fonts
+    "fonts.googleapis.com"
+    "fonts.gstatic.com"
+    # CDN
+    "cdn.jsdelivr.net"
+    # Vercel (Next.js deployment)
+    "vercel.com"
+    "api.vercel.com"
+    "vercel.live"
+    # Cloud Postgres providers (dashboard/API — add your DB endpoint to config.json extra_domains)
+    "supabase.co"
+    "supabase.com"
+    "pooler.supabase.com"
+    "neon.tech"
+    "neon.com"
+    "aivencloud.com"
 )
 
 {

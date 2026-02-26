@@ -59,7 +59,9 @@ _"I spent weekends configuring Claude, Docker, and everything else — now you d
 | **Codex CLI**              | OpenAI's agentic coding CLI — GPT-5.3-Codex, full-auto mode. Optional, requires separate ChatGPT Plus/Pro subscription.        | Out of the box |
 | **Plugin system**          | Drop a directory with a `plugin.json` to register hooks, env vars, commands, agents, MCP servers                               | Out of the box |
 | **GSD framework**          | 30+ slash commands and 11 specialized agents for structured development                                                        | Out of the box |
-| **iptables firewall**      | Default-deny network with domain whitelist (32 core domains), disable via `config.json`                                        | Out of the box |
+| **BMAD Method**            | AI-driven agile development framework — 21+ specialized agents, 50+ guided workflows (PRD, architecture, epics, QA)            | Out of the box |
+| **PostgreSQL client**      | `psql` CLI for connecting to Postgres databases                                                                                | Out of the box |
+| **iptables firewall**      | Default-deny network with domain whitelist (47 core domains), disable via `config.json`                                        | Out of the box |
 | **Oh-My-Zsh**              | Powerlevel10k, fzf, git-delta, GitHub CLI                                                                                      | Out of the box |
 | **Langfuse observability** | Self-hosted tracing — every conversation traced to a local dashboard                                                           | Opt-in         |
 | **MCP gateway**            | Model Context Protocol tool access via Docker MCP Gateway                                                                      | Opt-in         |
@@ -366,7 +368,7 @@ Add your own skills by creating a directory under `agent-config/skills/` with a 
 ```
 Host (Docker Desktop)
  ├── VS Code → Dev Container (Debian 12 Bookworm / Node 20)
- │   ├── Claude Code + Codex CLI + plugins + GSD framework
+ │   ├── Claude Code + Codex CLI + plugins + GSD + BMAD + psql
  │   ├── iptables whitelist firewall
  │   └── /var/run/docker.sock (from host)
  │
@@ -396,7 +398,7 @@ To disable the firewall entirely, set `firewall.enabled` to `false` in `config.j
 
 Rebuild the container to apply. When disabled, all iptables rules are flushed and policies set to ACCEPT.
 
-**Always included** (32 core domains): Anthropic API, GitHub, npm, PyPI, Debian repos, VS Code Marketplace, Azure Blob Storage (VS Code extensions), OpenAI (API + Auth + Platform + ChatGPT), Google AI API, Cloudflare, and more.
+**Always included** (47 core domains): Anthropic API, GitHub, npm, PyPI, Debian repos, VS Code Marketplace, Azure Blob Storage (VS Code extensions), OpenAI (API + Auth + Platform + ChatGPT), Google AI API, Cloudflare, Amazon, Google Fonts, jsDelivr CDN, Vercel, and cloud Postgres providers (Supabase, Neon, Aiven dashboards — add your specific DB endpoint to `extra_domains`).
 
 **Auto-generated**: Per-publisher VS Code extension CDN domains are derived from `devcontainer.json` so extensions install without firewall errors.
 
@@ -464,6 +466,18 @@ Run `/gsd:help` inside a Claude session for the full command list.
 
 ---
 
+## BMAD Method
+
+[BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) (Breakthrough Method of Agile AI-driven Development) is a CLI-installable framework that provides 21+ specialized AI agents with role-based personas (PM, Architect, Developer, QA, UX Designer, etc.) and 50+ guided workflows for PRD creation, architecture design, epic/story generation, implementation, and testing.
+
+BMAD is installed per-project into `_bmad/` and registers slash commands in `.claude/commands/`. The CLI is available globally in the container.
+
+**Key commands:** `bmad install`, `bmad status`, `bmad list:agents`, `bmad list:expansions`
+
+Run `/bmad-help` inside a Claude session for the full command list.
+
+---
+
 ## Langfuse Tracing
 
 The `nmc-langfuse-tracing` plugin traces every Claude conversation to your local Langfuse instance. It registers a Stop hook that reads transcript files, groups messages into turns, and sends structured traces with generation and tool spans.
@@ -492,6 +506,8 @@ tail -50 ~/.claude/state/langfuse_hook.log
 | `clauder`        | Alias for `claude --resume`                                             |
 | `codex`          | Codex CLI — GPT-5.3-Codex, full-auto, no sandbox                        |
 | `codexr`         | Alias for `codex resume`                                                |
+| `bmad`           | BMAD Method CLI — install modules, check status, list agents            |
+| `psql`           | PostgreSQL client CLI                                                   |
 | `save-secrets`   | Capture live credentials, git identity, and keys to `secrets.json`      |
 | `langfuse-setup` | Generate secrets, start Langfuse stack, verify health                   |
 | `nmc-update`     | Pull latest NMC changes, detect if container rebuild is needed          |

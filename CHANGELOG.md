@@ -8,6 +8,25 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
+## [1.3.0] - 2026-02-26
+
+### Added
+
+- **BMAD Method CLI** — [BMAD Method](https://github.com/bmad-code-org/BMAD-METHOD) (Breakthrough Method of Agile AI-driven Development) installed globally. Provides 21+ specialized AI agents with role-based personas (PM, Architect, Developer, QA, UX Designer) and 50+ guided workflows for PRD creation, architecture, epics, stories, and testing. Install per-project with `bmad install`, run `/bmad-help` in Claude for the full command list
+- **PostgreSQL client** — `psql` CLI added to the container for connecting to Postgres databases from the terminal
+- **Linux compatibility confirmed** — tested and verified on Debian 12 and Arch Linux in addition to Ubuntu 24
+- **15 new firewall domains** — Amazon (API + product data), Google Fonts, jsDelivr CDN, Vercel (deploy + API + preview), and cloud Postgres providers (Supabase, Neon, Aiven dashboards)
+
+### Fixed
+
+- **Langfuse network checks skipped when plugin is disabled** — `setup-network-checks.sh` now checks plugin enabled state before running connectivity tests
+
+### Changed
+
+- Core firewall domain count increased from 32 to 47
+
+---
+
 ## [1.2.4] - 2026-02-24
 
 ### Fixed
@@ -240,7 +259,8 @@ First public release. Everything below is what ships out of the box.
 - `secrets.example.json` — secret schema reference
 - `LICENSE` — MIT
 
-[1.2.4]: https://github.com/agomusio/no-more-configs/compare/v1.2.3...HEAD
+[1.3.0]: https://github.com/agomusio/no-more-configs/compare/v1.2.4...HEAD
+[1.2.4]: https://github.com/agomusio/no-more-configs/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/agomusio/no-more-configs/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/agomusio/no-more-configs/compare/v1.2.1...v1.2.2
 [1.2.1]: https://github.com/agomusio/no-more-configs/compare/v1.2.0...v1.2.1
