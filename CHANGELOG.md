@@ -8,6 +8,14 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
+## [1.3.2] - 2026-02-28
+
+### Changed
+
+- **npm package SEO** — updated description to keyword-rich one-liner, expanded keywords from 7 to 25 terms covering the full feature set (MCP, Langfuse, BMAD, GSD, firewall, etc.), and replaced the minimal 44-line npm README with the full repo README via a `prepack` copy script
+
+---
+
 ## [1.3.1] - 2026-02-28
 
 ### Fixed
@@ -267,7 +275,8 @@ First public release. Everything below is what ships out of the box.
 - `secrets.example.json` — secret schema reference
 - `LICENSE` — MIT
 
-[1.3.1]: https://github.com/agomusio/no-more-configs/compare/v1.3.0...HEAD
+[1.3.2]: https://github.com/agomusio/no-more-configs/compare/v1.3.1...HEAD
+[1.3.1]: https://github.com/agomusio/no-more-configs/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/agomusio/no-more-configs/compare/v1.2.4...v1.3.0
 [1.2.4]: https://github.com/agomusio/no-more-configs/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/agomusio/no-more-configs/compare/v1.2.2...v1.2.3
