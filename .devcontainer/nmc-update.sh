@@ -76,7 +76,7 @@ old_version="${old_version:-unknown}"
 # 2. Fetch
 echo -e "${DIM}Fetching updates...${RESET}"
 if ! git fetch origin 2>/dev/null; then
-    echo -e "${RED}Fetch failed.${RESET} Check your network connection."
+    echo -e "${RED}Fetch failed.${RESET} Check your network connection.\n"
     exit 1
 fi
 
@@ -85,7 +85,7 @@ local_head=$(git rev-parse HEAD 2>/dev/null || echo "")
 remote_head=$(git rev-parse origin/main 2>/dev/null || echo "")
 
 if [[ -n "$local_head" && "$local_head" == "$remote_head" ]]; then
-    echo -e "${GREEN}Already up to date.${RESET} (v${old_version})"
+    echo -e "${GREEN}Already up to date.${RESET} (v${old_version})\n"
     rm -f "$FLAG_FILE"
     exit 0
 fi
@@ -100,7 +100,7 @@ fi
 echo -e "${DIM}Pulling changes...${RESET}"
 if ! git pull origin main 2>/dev/null; then
     echo -e "${RED}Pull failed.${RESET}"
-    echo -e "\n${YELLOW}Tip:${RESET} If you have local changes, try: git stash && nmc-update"
+    echo -e "\n${YELLOW}Tip:${RESET} If you have local changes, try: git stash && nmc-update\n"
     exit 1
 fi
 
@@ -133,3 +133,5 @@ fi
 
 # 8. Clear update flag
 rm -f "$FLAG_FILE"
+
+echo ""
