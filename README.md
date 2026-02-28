@@ -193,7 +193,7 @@ npx no-more-configs@latest
 nmc-update
 ```
 
-## Both pull the latest changes and tell you if a container rebuild is needed. The container shell also shows a notification banner when a new version is available.
+### Both pull the latest changes and tell you if a container rebuild is needed. The container shell also shows a notification banner when a new version is available.
 
 ## How It Works
 
@@ -514,16 +514,17 @@ tail -50 ~/.claude/state/langfuse_hook.log
 | `clauder`        | Alias for `claude --resume`                                             |
 | `codex`          | Codex CLI — GPT-5.3-Codex, full-auto, no sandbox                        |
 | `codexr`         | Alias for `codex resume`                                                |
+| `save-config`    | Capture settings and preferences to `config.json`                       |
+| `save-secrets`   | Capture live credentials, git identity, and keys to `secrets.json`      |
+| `nmc-update`     | Pull latest NMC changes, detect if container rebuild is needed          |
+| `langfuse-setup` | Generate secrets, start Langfuse stack, verify health                   |
+| `mcp-setup`      | Regenerate MCP configs (Claude + Codex) and health-check gateway        |
+| `slc`            | Show postCreate lifecycle log (`/tmp/devcontainer-logs/postCreate.log`) |
+| `sls`            | Show postStart lifecycle log (`/tmp/devcontainer-logs/postStart.log`)   |
 | `bmad`           | BMAD Method CLI — install modules, check status, list agents            |
 | `psql`           | PostgreSQL client CLI                                                   |
 | `bun`            | Bun runtime — JavaScript/TypeScript runtime and package manager         |
 | `redis-cli`      | Redis CLI — connect to Redis instances                                  |
-| `save-secrets`   | Capture live credentials, git identity, and keys to `secrets.json`      |
-| `langfuse-setup` | Generate secrets, start Langfuse stack, verify health                   |
-| `nmc-update`     | Pull latest NMC changes, detect if container rebuild is needed          |
-| `mcp-setup`      | Regenerate MCP configs (Claude + Codex) and health-check gateway        |
-| `slc`            | Show postCreate lifecycle log (`/tmp/devcontainer-logs/postCreate.log`) |
-| `sls`            | Show postStart lifecycle log (`/tmp/devcontainer-logs/postStart.log`)   |
 
 ---
 
