@@ -8,6 +8,19 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
+## [Unreleased]
+
+### Fixed
+
+- **GSD commands missing from Codex** — `init-gsd.sh` now runs `--codex --global` in addition to `--claude --global`, so GSD slash commands and agents are available in Codex sessions
+
+### Changed
+
+- **npm keywords** — added `agentic-ai`, `agentic-workflow`, `vibe-coding` (28 total)
+- `agent-config/memory/` added to `.gitignore`
+
+---
+
 ## [1.3.2] - 2026-02-28
 
 ### Changed
