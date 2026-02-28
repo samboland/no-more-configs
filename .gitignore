@@ -31,6 +31,9 @@ secrets.json
 .vscode/
 .devcontainer/firewall-domains.conf
 
+# Agent memory (persisted per-workspace, restored on rebuild)
+agent-config/memory/
+
 # Upstream plugins (downloaded at install time from anthropics/claude-code)
 agent-config/plugins/plugin-dev/
 agent-config/plugins/frontend-design/
