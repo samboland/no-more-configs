@@ -8,6 +8,14 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
+## [1.3.1] - 2026-02-28
+
+### Fixed
+
+- **SDK install failure blocking agent config hydration** — removed `set -e` from `install-sdks.sh` and wrapped each .NET install step with fallbacks. A failed SDK download (e.g. .NET 10.0 preview) no longer prevents `install-agent-config.sh` from running, which caused missing settings, permissions, plugins, and commands on container start
+
+---
+
 ## [1.3.0] - 2026-02-26
 
 ### Added
@@ -259,7 +267,8 @@ First public release. Everything below is what ships out of the box.
 - `secrets.example.json` — secret schema reference
 - `LICENSE` — MIT
 
-[1.3.0]: https://github.com/agomusio/no-more-configs/compare/v1.2.4...HEAD
+[1.3.1]: https://github.com/agomusio/no-more-configs/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/agomusio/no-more-configs/compare/v1.2.4...v1.3.0
 [1.2.4]: https://github.com/agomusio/no-more-configs/compare/v1.2.3...v1.2.4
 [1.2.3]: https://github.com/agomusio/no-more-configs/compare/v1.2.2...v1.2.3
 [1.2.2]: https://github.com/agomusio/no-more-configs/compare/v1.2.1...v1.2.2
