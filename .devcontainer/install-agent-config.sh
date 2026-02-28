@@ -870,20 +870,29 @@ if [ -f "$SECRETS_FILE" ]; then
         CREDS_STATUS="restored"
         echo "[install] Claude credentials restored"
 
-        # Mark onboarding complete, dismiss effort callout, prevent VS Code extension auto-install
+        # Mark onboarding complete, dismiss effort callout, prevent VS Code extension auto-install,
+        # and pre-accept workspace trust so the prompt doesn't appear on every rebuild
         CLAUDE_JSON="/home/node/.claude.json"
+        TRUST_ENTRY='{"hasTrustDialogAccepted":true,"hasCompletedProjectOnboarding":true,"projectOnboardingSeenCount":0,"allowedTools":[]}'
         if [ ! -f "$CLAUDE_JSON" ]; then
-            jq -n '{
+            jq -n --argjson trust "$TRUST_ENTRY" '{
                 "hasCompletedOnboarding": true,
                 "theme": "dark",
                 "effortCalloutDismissed": true,
                 "officialMarketplaceAutoInstallAttempted": true,
                 "officialMarketplaceAutoInstalled": true,
-                "hasIdeOnboardingBeenShown": {"vscode": true}
+                "hasIdeOnboardingBeenShown": {"vscode": true},
+                "projects": {"/workspace": $trust}
             }' > "$CLAUDE_JSON"
         else
-            jq '.hasCompletedOnboarding = true | .effortCalloutDismissed = true | .officialMarketplaceAutoInstallAttempted = true | .officialMarketplaceAutoInstalled = true | .hasIdeOnboardingBeenShown.vscode = true' \
-                "$CLAUDE_JSON" > "$CLAUDE_JSON.tmp" \
+            jq --argjson trust "$TRUST_ENTRY" '
+                .hasCompletedOnboarding = true |
+                .effortCalloutDismissed = true |
+                .officialMarketplaceAutoInstallAttempted = true |
+                .officialMarketplaceAutoInstalled = true |
+                .hasIdeOnboardingBeenShown.vscode = true |
+                .projects["/workspace"] = (.projects["/workspace"] // {} | . + $trust)
+            ' "$CLAUDE_JSON" > "$CLAUDE_JSON.tmp" \
                 && mv "$CLAUDE_JSON.tmp" "$CLAUDE_JSON"
         fi
 
