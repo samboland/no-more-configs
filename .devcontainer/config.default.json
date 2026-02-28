@@ -32,7 +32,10 @@
     }
   },
   "sdks": {
-    "dotnet": false
+    "dotnet": false,
+    "rust": false,
+    "go": false,
+    "deno": false
   },
   "plugins": {
     "nmc-langfuse-tracing": {

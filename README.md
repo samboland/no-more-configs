@@ -18,6 +18,8 @@
 <pre>npx no-more-configs@latest</pre>
 
 **Works on Windows (WSL2 + Docker Desktop) and Linux (Docker Engine).**
+**Linux is significantly faster** — Docker Engine runs containers natively without the WSL2 virtualization layer that Docker Desktop requires on Windows.
+macOS is untested — if you try it, [open an issue](https://github.com/agomusio/no-more-configs/issues) and let me know how it goes!
 
 <br>
 
@@ -61,11 +63,14 @@ _"I spent weekends configuring Claude, Docker, and everything else — now you d
 | **GSD framework**          | 30+ slash commands and 11 specialized agents for structured development                                                        | Out of the box |
 | **BMAD Method**            | AI-driven agile development framework — 21+ specialized agents, 50+ guided workflows (PRD, architecture, epics, QA)            | Out of the box |
 | **PostgreSQL client**      | `psql` CLI for connecting to Postgres databases                                                                                | Out of the box |
+| **Bun**                    | JavaScript/TypeScript runtime and package manager                                                                              | Out of the box |
+| **Redis CLI**              | `redis-cli` for connecting to Redis instances                                                                                  | Out of the box |
+| **Opt-in SDKs**            | Rust, Go, Deno — install at container start via `config.json → sdks`                                                           | Opt-in         |
 | **iptables firewall**      | Default-deny network with domain whitelist (47 core domains), disable via `config.json`                                        | Out of the box |
 | **Oh-My-Zsh**              | Powerlevel10k, fzf, git-delta, GitHub CLI                                                                                      | Out of the box |
-| **Langfuse observability** | Self-hosted tracing — every conversation traced to a local dashboard                                                           | Opt-in         |
-| **MCP gateway**            | Model Context Protocol tool access via Docker MCP Gateway                                                                      | Opt-in         |
-| **Codex MCP server**       | Let Claude delegate to Codex mid-session                                                                                       | Opt-in         |
+| **Langfuse observability** | Self-hosted tracing — every conversation traced to a local dashboard                                                           | Opt-in (beta)  |
+| **MCP gateway**            | Model Context Protocol tool access via Docker MCP Gateway                                                                      | Opt-in (beta)  |
+| **Codex MCP server**       | Let Claude delegate to Codex mid-session                                                                                       | Opt-in (beta)  |
 
 ---
 
@@ -77,10 +82,12 @@ _"I spent weekends configuring Claude, Docker, and everything else — now you d
 - [VS Code](https://code.visualstudio.com/) with the [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension
 
 **Windows:**
+
 - [WSL2](https://learn.microsoft.com/en-us/windows/wsl/install) enabled
 - [Docker Desktop for Windows](https://www.docker.com/products/docker-desktop/) running (WSL2 backend)
 
 **Linux:**
+
 - [Docker Engine](https://docs.docker.com/engine/install/) with [buildx plugin](https://docs.docker.com/build/install-buildx/)
 
 ### 1. Install and Open
@@ -368,7 +375,8 @@ Add your own skills by creating a directory under `agent-config/skills/` with a 
 ```
 Host (Docker Desktop)
  ├── VS Code → Dev Container (Debian 12 Bookworm / Node 20)
- │   ├── Claude Code + Codex CLI + plugins + GSD + BMAD + psql
+ │   ├── Claude Code + Codex CLI + plugins + GSD + BMAD
+ │   ├── Node.js, Bun, Python 3, psql, redis-cli
  │   ├── iptables whitelist firewall
  │   └── /var/run/docker.sock (from host)
  │
@@ -508,6 +516,8 @@ tail -50 ~/.claude/state/langfuse_hook.log
 | `codexr`         | Alias for `codex resume`                                                |
 | `bmad`           | BMAD Method CLI — install modules, check status, list agents            |
 | `psql`           | PostgreSQL client CLI                                                   |
+| `bun`            | Bun runtime — JavaScript/TypeScript runtime and package manager         |
+| `redis-cli`      | Redis CLI — connect to Redis instances                                  |
 | `save-secrets`   | Capture live credentials, git identity, and keys to `secrets.json`      |
 | `langfuse-setup` | Generate secrets, start Langfuse stack, verify health                   |
 | `nmc-update`     | Pull latest NMC changes, detect if container rebuild is needed          |
@@ -560,6 +570,16 @@ Edit `config.json`:
 ```
 
 Rebuild the container to apply.
+
+### Enabling Opt-in SDKs
+
+Edit `config.json`:
+
+```json
+{ "sdks": { "rust": true, "go": true, "deno": true } }
+```
+
+Rebuild the container. SDKs install during postCreate and persist for the container's lifetime.
 
 ### Changing the Codex Model
 
@@ -655,10 +675,10 @@ Handled automatically. If it recurs: `git config --global --add safe.directory '
 
 ## Known Issues
 
-| Issue                                                                                | Cause                                                                                                                                            | Status                                                                                                 |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| Issue                                                                                               | Cause                                                                                                                                            | Status                                                                                                 |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | Claude Code Edit tool throws `ENOENT: no such file or directory` on files that exist (Windows only) | WSL2 bind mount (C:\ → 9P → container) causes stale file metadata; the Edit tool's freshness check sees a mismatched mtime and rejects the write | Intermittent, self-healing (re-read + retry succeeds). Likely resolved in a future Claude Code update. |
-| Lifecycle terminal closes before you can read output                                 | VS Code dismisses the postCreate/postStart terminal on completion                                                                                | Use `slc` / `sls` aliases to view saved logs from `/tmp/devcontainer-logs/`                            |
+| Lifecycle terminal closes before you can read output                                                | VS Code dismisses the postCreate/postStart terminal on completion                                                                                | Use `slc` / `sls` aliases to view saved logs from `/tmp/devcontainer-logs/`                            |
 
 ---
 

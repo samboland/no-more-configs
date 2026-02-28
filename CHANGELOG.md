@@ -12,6 +12,9 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ### Added
 
+- **Bun runtime** — installed at build time, available immediately alongside Node.js
+- **Redis CLI** — `redis-cli` added to container via `redis-tools`, available immediately
+- **Opt-in SDKs: Rust, Go, Deno** — install at container start by setting `sdks.rust`, `sdks.go`, or `sdks.deno` to `true` in `config.json`. Disabled by default to keep build times fast
 - **pnpm and yarn** — enabled via corepack at build time, available immediately without manual install
 
 ### Fixed

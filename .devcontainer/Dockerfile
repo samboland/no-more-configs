@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   iputils-ping \
   locales \
   postgresql-client \
+  redis-tools \
   && sed -i '/en_US.UTF-8/s/^# //g' /etc/locale.gen && locale-gen \
   && apt-get clean && rm -rf /var/lib/apt/lists/*
 
@@ -119,6 +120,10 @@ RUN sh -c "$(curl -fsSL https://github.com/deluan/zsh-in-docker/releases/downloa
 
 # Enable pnpm and yarn via corepack (ships with Node 20)
 RUN corepack enable && corepack prepare pnpm@latest yarn@stable --activate
+
+# Install Bun runtime
+RUN curl -fsSL https://bun.sh/install | bash
+ENV PATH="/home/node/.bun/bin:${PATH}"
 
 # Install Claude Code (it will go into /home/node/.local/bin)
 RUN curl -fsSL https://claude.ai/install.sh | bash -s -- "${CLAUDE_CODE_VERSION}"
