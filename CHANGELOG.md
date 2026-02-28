@@ -21,9 +21,11 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 - **GSD commands missing from Codex** — `init-gsd.sh` now runs `--codex --global` in addition to `--claude --global`, so GSD slash commands and agents are available in Codex sessions
 - **Noisy credential helper errors on git push** — VS Code's injected credential helper replaced with `gh auth git-credential` in postStart, silencing `fatal: could not read Username` stderr noise
+- **Workspace trust prompt on every rebuild** — `/workspace` trust is now pre-accepted in `.claude.json` during install, eliminating the safety-check prompt and command execution delay on container start
 
 ### Changed
 
+- **Dockerfile consolidated (25 → 7 RUN commands)** — independent RUN commands merged into grouped layers, eliminating per-layer overhead and roughly halving build time
 - **npm keywords** — added `agentic-ai`, `agentic-workflow`, `vibe-coding` (28 total)
 - `agent-config/memory/` added to `.gitignore`
 
