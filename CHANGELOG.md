@@ -10,9 +10,14 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ## [Unreleased]
 
+### Added
+
+- **pnpm and yarn** — enabled via corepack at build time, available immediately without manual install
+
 ### Fixed
 
 - **GSD commands missing from Codex** — `init-gsd.sh` now runs `--codex --global` in addition to `--claude --global`, so GSD slash commands and agents are available in Codex sessions
+- **Noisy credential helper errors on git push** — VS Code's injected credential helper replaced with `gh auth git-credential` in postStart, silencing `fatal: could not read Username` stderr noise
 
 ### Changed
 
