@@ -2,8 +2,7 @@
 # Install optional SDKs based on config.json → sdks section
 # Runs during postCreate — installs persist for the container's lifetime
 # Temporarily opens firewall for required domains, then refreshes DNS after
-
-set -e
+# NOTE: No set -e — SDK installs are optional and must not block install-agent-config.sh
 
 CONFIG_FILE="${CLAUDE_WORKSPACE:-/workspace}/config.json"
 
@@ -34,13 +33,20 @@ if [ "$DOTNET_ENABLED" = "true" ]; then
         for domain in dot.net dotnet.microsoft.com builds.dotnet.microsoft.com dotnetcli.azureedge.net dotnetbuilds.azureedge.net; do
             allow_domain "$domain"
         done
-        curl -fsSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh
-        chmod +x /tmp/dotnet-install.sh
-        sudo /tmp/dotnet-install.sh --channel 9.0 --install-dir /usr/share/dotnet
-        sudo /tmp/dotnet-install.sh --channel 10.0 --quality preview --install-dir /usr/share/dotnet
-        rm /tmp/dotnet-install.sh
-        sudo ln -sf /usr/share/dotnet/dotnet /usr/local/bin/dotnet
-        echo "✓ .NET $(dotnet --version) installed"
+        if curl -fsSL https://dot.net/v1/dotnet-install.sh -o /tmp/dotnet-install.sh; then
+            chmod +x /tmp/dotnet-install.sh
+            sudo /tmp/dotnet-install.sh --channel 9.0 --install-dir /usr/share/dotnet || echo "⚠ .NET 9.0 install failed — continuing"
+            sudo /tmp/dotnet-install.sh --channel 10.0 --quality preview --install-dir /usr/share/dotnet || echo "⚠ .NET 10.0 preview install failed — continuing"
+            rm -f /tmp/dotnet-install.sh
+            sudo ln -sf /usr/share/dotnet/dotnet /usr/local/bin/dotnet 2>/dev/null || true
+            if command -v dotnet &>/dev/null; then
+                echo "✓ .NET $(dotnet --version) installed"
+            else
+                echo "⚠ .NET install completed with errors — dotnet not available"
+            fi
+        else
+            echo "⚠ Failed to download .NET install script — skipping"
+        fi
     fi
 else
     echo "· .NET SDK disabled — set sdks.dotnet: true in config.json to enable"
