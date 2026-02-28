@@ -10,6 +10,10 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ## [Unreleased]
 
+---
+
+## [1.4.0] - 2026-02-28
+
 ### Added
 
 - **Bun runtime** — installed at build time, available immediately alongside Node.js
@@ -298,7 +302,8 @@ First public release. Everything below is what ships out of the box.
 - `secrets.example.json` — secret schema reference
 - `LICENSE` — MIT
 
-[1.3.2]: https://github.com/agomusio/no-more-configs/compare/v1.3.1...HEAD
+[1.4.0]: https://github.com/agomusio/no-more-configs/compare/v1.3.2...HEAD
+[1.3.2]: https://github.com/agomusio/no-more-configs/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/agomusio/no-more-configs/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/agomusio/no-more-configs/compare/v1.2.4...v1.3.0
 [1.2.4]: https://github.com/agomusio/no-more-configs/compare/v1.2.3...v1.2.4
