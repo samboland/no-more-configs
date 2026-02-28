@@ -1,7 +1,7 @@
 {
   "name": "no-more-configs",
   "version": "1.3.1",
-  "description": "One-command installer for No More Configs — a clone-and-go VS Code devcontainer for Claude Code",
+  "description": "Zero-config devcontainer for Claude Code & Codex CLI — firewall, plugins, Langfuse tracing, MCP servers, and 80+ slash commands out of the box. One command to install.",
   "type": "module",
   "bin": {
     "no-more-configs": "index.js"
@@ -10,17 +10,38 @@
     "index.js",
     "README.md"
   ],
+  "scripts": {
+    "prepack": "cp ../README.md README.md"
+  },
   "engines": {
     "node": ">=18"
   },
   "keywords": [
     "claude",
     "claude-code",
+    "codex",
+    "codex-cli",
     "devcontainer",
     "vscode",
-    "codex",
-    "ai",
-    "coding-assistant"
+    "docker",
+    "ai-coding",
+    "ai-agent",
+    "mcp",
+    "model-context-protocol",
+    "langfuse",
+    "anthropic",
+    "openai",
+    "developer-tools",
+    "dev-environment",
+    "firewall",
+    "plugin-system",
+    "gsd",
+    "bmad",
+    "wsl2",
+    "linux",
+    "arch-linux",
+    "debian",
+    "containerized-development"
   ],
   "repository": {
     "type": "git",
