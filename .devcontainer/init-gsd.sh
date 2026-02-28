@@ -10,6 +10,8 @@ npm install -g get-shit-done-cc@latest 2>/dev/null || echo "Warning: GSD update 
 # Always refresh slash commands (picks up new/changed commands from updates)
 echo "Installing GSD commands into Claude config..."
 npx get-shit-done-cc --claude --global
+echo "Installing GSD commands into Codex config..."
+npx get-shit-done-cc --codex --global
 
 # Report .planning status
 if [ -d "/workspace/.planning" ]; then
