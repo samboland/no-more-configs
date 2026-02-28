@@ -117,6 +117,9 @@ RUN sh -c "$(curl -fsSL https://github.com/deluan/zsh-in-docker/releases/downloa
   -a "export PROMPT_COMMAND='history -a' && export HISTFILE=/commandhistory/.bash_history" \
   -x
 
+# Enable pnpm and yarn via corepack (ships with Node 20)
+RUN corepack enable && corepack prepare pnpm@latest yarn@stable --activate
+
 # Install Claude Code (it will go into /home/node/.local/bin)
 RUN curl -fsSL https://claude.ai/install.sh | bash -s -- "${CLAUDE_CODE_VERSION}"
 
