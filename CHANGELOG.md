@@ -10,6 +10,14 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ## [Unreleased]
 
+### Added
+
+- **Markdown Mermaid extension** — `bierner.markdown-mermaid` added to devcontainer for rendering Mermaid diagrams in VS Code markdown preview
+
+### Changed
+
+- BMAD Method added to acknowledgements in README
+
 ---
 
 ## [1.4.0] - 2026-02-28
