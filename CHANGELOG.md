@@ -174,7 +174,7 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
-## [1.1.1] - 2026-02-17 `released`
+## [1.1.1] - 2026-02-17
 
 ### Changed
 
@@ -188,7 +188,7 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
-## [1.1.0] - 2026-02-16 `released`
+## [1.1.0] - 2026-02-16
 
 ### Added
 
@@ -213,7 +213,7 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
-## [1.0.3] - 2026-02-16 `released`
+## [1.0.3] - 2026-02-16
 
 ### Fixed
 
@@ -224,7 +224,7 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
-## [1.0.2] - 2026-02-16 `released`
+## [1.0.2] - 2026-02-16
 
 ### Changed
 
@@ -238,7 +238,7 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
-## [1.0.1] - 2026-02-16 `released`
+## [1.0.1] - 2026-02-16
 
 ### Fixed
 
@@ -266,7 +266,7 @@ GitHub releases should use the title format: **vX.Y.Z — YYYY-MM-DD**
 
 ---
 
-## [1.0.0] - 2026-02-16 `released`
+## [1.0.0] - 2026-02-16
 
 First public release. Everything below is what ships out of the box.
 
