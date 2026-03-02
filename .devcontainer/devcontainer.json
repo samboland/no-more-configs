@@ -22,7 +22,8 @@
         "cloudflare.cloudflare-workers-bindings-extension",
         "qwtel.sqlite-viewer",
         "bradlc.vscode-tailwindcss",
-        "github.vscode-github-actions"
+        "github.vscode-github-actions",
+        "bierner.markdown-mermaid"
       ],
       "settings": {
         "editor.formatOnSave": true,
@@ -61,7 +62,11 @@
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=delegated",
   "workspaceFolder": "/workspace",
   "postStartCommand": "bash .devcontainer/lifecycle-wrapper.sh postStart 'sudo /usr/local/bin/init-firewall.sh && git config --global --add safe.directory /workspace && git config --global --add safe.directory \"*\" && git config --global core.autocrlf input && git config --global credential.helper \"!gh auth git-credential\" && sudo git config --system credential.helper \"!gh auth git-credential\" && bash .devcontainer/setup-network-checks.sh && bash .devcontainer/init-gsd.sh && mcp-setup'",
-  "initializeCommand": ["node", "-e", "const fs=require('fs'); if(!fs.existsSync('config.json'))fs.copyFileSync('.devcontainer/config.default.json','config.json')"],
+  "initializeCommand": [
+    "node",
+    "-e",
+    "const fs=require('fs'); if(!fs.existsSync('config.json'))fs.copyFileSync('.devcontainer/config.default.json','config.json')"
+  ],
   "postCreateCommand": "bash .devcontainer/lifecycle-wrapper.sh postCreate 'bash .devcontainer/setup-container.sh && bash .devcontainer/install-sdks.sh && bash .devcontainer/install-agent-config.sh'",
   "waitFor": "postStartCommand",
   "forwardPorts": [3000, 8787],
