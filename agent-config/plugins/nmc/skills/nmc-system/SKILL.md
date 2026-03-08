@@ -3,7 +3,7 @@ name: nmc-system
 description: No More Configs (NMC) system reference. Use when the user asks about the devcontainer, Docker setup, container configuration, workspace layout, installed tools, firewall, networking, Langfuse tracing, MCP gateway, mounted volumes, ports, environment variables, shell configuration, plugin system architecture, how plugins are installed, how hooks are registered, how the install script works, or any question about how this development environment is set up and configured.
 license: MIT
 metadata:
-  author: agomusio
+  author: Sam Boland
   version: "3.0.0"
 ---
 

@@ -43,7 +43,7 @@ Read `/workspace/CHANGELOG.md`. Insert a new section after the `---` that follow
   - **Removed** — removed features
 - Only include categories that have entries
 - Update the comparison links at the bottom of the file:
-  - Add `[X.Y.Z]: https://github.com/agomusio/no-more-configs/compare/vPREVIOUS...HEAD`
+  - Add `[X.Y.Z]: https://github.com/samboland/no-more-configs/compare/vPREVIOUS...HEAD`
   - Update the previous version's link to compare against the new tag instead of HEAD
 
 ## Step 5: Update cli/README.md (if needed)
@@ -74,7 +74,7 @@ After pushing, inform the user:
 - GitHub release: auto-created by `.github/workflows/release.yml`
 - npm publish: auto-published by `.github/workflows/publish-npm.yml`
 
-Track workflows: https://github.com/agomusio/no-more-configs/actions
+Track workflows: https://github.com/samboland/no-more-configs/actions
 ```
 
 ---

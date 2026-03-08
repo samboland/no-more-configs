@@ -8,9 +8,9 @@
 
 **Free, transparent, and fully customizable. No subscription walls, no black-box abstractions — just a devcontainer you own and control. For developers who'd rather read the source than trust the vendor.**
 
-[![GitHub stars](https://img.shields.io/github/stars/agomusio/no-more-configs?style=for-the-badge&logo=github&color=181717)](https://github.com/agomusio/no-more-configs)
+[![GitHub stars](https://img.shields.io/github/stars/samboland/no-more-configs?style=for-the-badge&logo=github&color=181717)](https://github.com/samboland/no-more-configs)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/github/v/release/agomusio/no-more-configs?style=for-the-badge&color=brightgreen)](https://github.com/agomusio/no-more-configs/releases/latest)
+[![Version](https://img.shields.io/github/v/release/samboland/no-more-configs?style=for-the-badge&color=brightgreen)](https://github.com/samboland/no-more-configs/releases/latest)
 [![npm](https://img.shields.io/npm/v/no-more-configs?style=for-the-badge&logo=npm&color=CB3837)](https://www.npmjs.com/package/no-more-configs)
 
 <br>
@@ -19,7 +19,7 @@
 
 **Works on Windows (WSL2 + Docker Desktop) and Linux (Docker Engine).**
 **Linux is significantly faster** — Docker Engine runs containers natively without the WSL2 virtualization layer that Docker Desktop requires on Windows.
-macOS is untested — if you try it, [open an issue](https://github.com/agomusio/no-more-configs/issues) and let me know how it goes!
+macOS is untested — if you try it, [open an issue](https://github.com/samboland/no-more-configs/issues) and let me know how it goes!
 
 <br>
 
@@ -99,14 +99,14 @@ npx no-more-configs@latest
 Or clone manually:
 
 ```bash
-git clone https://github.com/agomusio/no-more-configs.git
+git clone https://github.com/samboland/no-more-configs.git
 cd no-more-configs
 code .
 ```
 
 This clones the repo, prints next steps, and tries to open VS Code automatically. You can also specify a directory: `npx no-more-configs my-workspace`.
 
-> **Alternative:** `git clone https://github.com/agomusio/no-more-configs.git && cd no-more-configs && code .`
+> **Alternative:** `git clone https://github.com/samboland/no-more-configs.git && cd no-more-configs && code .`
 
 VS Code will detect the devcontainer and prompt to reopen in container. Click **Reopen in Container** (or use `Ctrl+Shift+P` → `Dev Containers: Reopen in Container`).
 
@@ -693,6 +693,6 @@ Built on the shoulders of:
 
 <br>
 
-MIT License · Copyright (c) 2026 agomusio
+MIT License · Copyright (c) 2026 Sam Boland
 
 </div>

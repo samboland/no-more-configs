@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "NMC system introspection and diagnostics. Provides /nmc command for system status and nmc-diagnostics agent for troubleshooting plugins, hooks, MCP servers, and container configuration.",
   "author": {
-    "name": "agomusio"
+    "name": "Sam Boland"
   },
   "commands": [
     {

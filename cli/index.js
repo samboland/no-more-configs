@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 // No More Configs — npx installer & updater
-// https://github.com/agomusio/no-more-configs
+// https://github.com/samboland/no-more-configs
 // Zero dependencies. Single file. ESM.
 
 import { execFileSync } from "node:child_process";
@@ -157,7 +157,7 @@ ${c.bold}Fresh install:${c.reset}
 ${c.bold}Update:${c.reset}
   Pulls latest changes. If devcontainer files changed, advises rebuild.
 
-${c.bold}More info:${c.reset} https://github.com/agomusio/no-more-configs
+${c.bold}More info:${c.reset} https://github.com/samboland/no-more-configs
 `.trim();
 
 function printHelp() {
@@ -200,7 +200,7 @@ function freshInstall(targetDir) {
     git(
       [
         "clone",
-        "https://github.com/agomusio/no-more-configs.git",
+        "https://github.com/samboland/no-more-configs.git",
         targetDir,
       ],
       process.cwd()

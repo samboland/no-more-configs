@@ -48,13 +48,13 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/agomusio/no-more-configs.git",
+    "url": "git+https://github.com/samboland/no-more-configs.git",
     "directory": "cli"
   },
-  "homepage": "https://github.com/agomusio/no-more-configs",
+  "homepage": "https://github.com/samboland/no-more-configs",
   "bugs": {
-    "url": "https://github.com/agomusio/no-more-configs/issues"
+    "url": "https://github.com/samboland/no-more-configs/issues"
   },
-  "author": "agomusio",
+  "author": "Sam Boland",
   "license": "MIT"
 }
